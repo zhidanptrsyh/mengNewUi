@@ -11,7 +11,7 @@ local gameName   = tostring(game:GetService("MarketplaceService"):GetProductInfo
 gameName         = gameName:gsub("[^%w_ ]", "")
 gameName         = gameName:gsub("%s+", "_")
 
-local ConfigFile = "Meng Hub/Config/Meng_" .. gameName .. ".json"
+local ConfigFile = "Meng Hub/Config/MengHub_" .. gameName .. ".json"
 
 ConfigData       = {}
 Elements         = {}
@@ -82,7 +82,6 @@ local Icons = {
     idea      = "rbxassetid://16833255748",
     strom     = "rbxassetid://13321880293",
     water     = "rbxassetid://100076212630732",
-    paw       = "rbxassetid://89562701750725",
     dcs       = "rbxassetid://15310731934",
     start     = "rbxassetid://108886429866687",
     next      = "rbxassetid://12662718374",
@@ -261,8 +260,8 @@ function CircleClick(Button, X, Y)
     end)
 end
 
-local MengNotif = {}
-function MengNotif:MakeNotify(NotifyConfig)
+local Menghub = {}
+function Menghub:MakeNotify(NotifyConfig)
     local NotifyConfig = NotifyConfig or {}
     NotifyConfig.Title = NotifyConfig.Title or "Meng Hub"
     NotifyConfig.Description = NotifyConfig.Description or "Notification"
@@ -460,8 +459,8 @@ function MengNotif:MakeNotify(NotifyConfig)
     return NotifyFunction
 end
 
-function mengnotif(msg, delay, color, title, desc)
-    return MengNotif:MakeNotify({
+function notif(msg, delay, color, title, desc)
+    return Menghub:MakeNotify({
         Title = title or "Meng Hub",
         Description = desc or "Notification",
         Content = msg or "Content",
@@ -470,10 +469,10 @@ function mengnotif(msg, delay, color, title, desc)
     })
 end
 
-function MengNotif:Window(GuiConfig)
+function Menghub:Window(GuiConfig)
     GuiConfig              = GuiConfig or {}
     GuiConfig.Title        = GuiConfig.Title or "Meng Hub"
-    GuiConfig.Footer       = GuiConfig.Footer or "MengHub"
+    GuiConfig.Footer       = GuiConfig.Footer or "MengHub >:D"
     GuiConfig.Color        = GuiConfig.Color or Color3.fromRGB(255, 0, 255)
     GuiConfig["Tab Width"] = GuiConfig["Tab Width"] or 120
     GuiConfig.Version      = GuiConfig.Version or 1
@@ -483,7 +482,7 @@ function MengNotif:Window(GuiConfig)
 
     local GuiFunc = {}
 
-    local Mengex = Instance.new("ScreenGui");
+    local Menghubb = Instance.new("ScreenGui");
     local DropShadowHolder = Instance.new("Frame");
     local DropShadow = Instance.new("ImageLabel");
     local Main = Instance.new("Frame");
@@ -506,10 +505,10 @@ function MengNotif:Window(GuiConfig)
     local LayersFolder = Instance.new("Folder");
     local LayersPageLayout = Instance.new("UIPageLayout");
 
-    Mengex.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-    Mengex.Name = "Meng Hub"
-    Mengex.ResetOnSpawn = false
-    Mengex.Parent = game:GetService("CoreGui")
+    Menghubb.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    Menghubb.Name = "Menghubb"
+    Menghubb.ResetOnSpawn = false
+    Menghubb.Parent = game:GetService("CoreGui")
 
     DropShadowHolder.BackgroundTransparency = 1
     DropShadowHolder.BorderSizePixel = 0
@@ -522,10 +521,10 @@ function MengNotif:Window(GuiConfig)
     end
     DropShadowHolder.ZIndex = 0
     DropShadowHolder.Name = "DropShadowHolder"
-    DropShadowHolder.Parent = Mengex
+    DropShadowHolder.Parent = Menghubb
 
-    DropShadowHolder.Position = UDim2.new(0, (Mengex.AbsoluteSize.X // 2 - DropShadowHolder.Size.X.Offset // 2), 0,
-        (Mengex.AbsoluteSize.Y // 2 - DropShadowHolder.Size.Y.Offset // 2))
+    DropShadowHolder.Position = UDim2.new(0, (Menghubb.AbsoluteSize.X // 2 - DropShadowHolder.Size.X.Offset // 2), 0,
+        (Menghubb.AbsoluteSize.Y // 2 - DropShadowHolder.Size.Y.Offset // 2))
     DropShadow.Image = "rbxassetid://6015897843"
     DropShadow.ImageColor3 = Color3.fromRGB(15, 15, 15)
     DropShadow.ImageTransparency = 1
@@ -748,8 +747,8 @@ function MengNotif:Window(GuiConfig)
     ScrollTab.ChildRemoved:Connect(UpdateSize1)
 
     function GuiFunc:DestroyGui()
-        if CoreGui:FindFirstChild("Mengex") then
-            Mengex:Destroy()
+        if CoreGui:FindFirstChild("Menghubb") then
+            Menghubb:Destroy()
         end
     end
 
@@ -855,7 +854,7 @@ function MengNotif:Window(GuiConfig)
         Instance.new("UICorner", Cancel).CornerRadius = UDim.new(0, 6)
 
         Yes.MouseButton1Click:Connect(function()
-            if Mengex then Mengex:Destroy() end
+            if Menghubb then Menghubb:Destroy() end
             if game.CoreGui:FindFirstChild("ToggleUIButton") then
                 game.CoreGui.ToggleUIButton:Destroy()
             end
@@ -887,7 +886,7 @@ function MengNotif:Window(GuiConfig)
         MainButton.Size = UDim2.new(0, 40, 0, 40)
         MainButton.Position = UDim2.new(0, 20, 0, 100)
         MainButton.BackgroundTransparency = 1
-        MainButton.Image = "rbxassetid://89562701750725"
+        MainButton.Image = "rbxassetid://" .. GuiConfig.Image
         MainButton.ScaleType = Enum.ScaleType.Fit
 
         local UICorner = Instance.new("UICorner")
@@ -2685,7 +2684,7 @@ function MengNotif:Window(GuiConfig)
                 Label.Size = UDim2.new(1, -20, 1, 0)
                 Label.BackgroundTransparency = 1
                 Label.Font = Enum.Font.GothamBold
-                Label.Text = "?? [ " .. title .. " ] ??"
+                Label.Text = "── [ " .. title .. " ] ──"
                 Label.TextColor3 = Color3.fromRGB(230, 230, 230)
                 Label.TextSize = 12
                 Label.TextXAlignment = Enum.TextXAlignment.Left
@@ -2707,4 +2706,4 @@ function MengNotif:Window(GuiConfig)
     return Tabs
 end
 
-return MengNotif
+return Menghub
