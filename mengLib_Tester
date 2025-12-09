@@ -323,12 +323,12 @@ function Menghub:MakeNotify(NotifyConfig)
         NotifyFrame.BorderSizePixel = 0
         NotifyFrame.Size = UDim2.new(1, 0, 0, 150)
         NotifyFrame.Name = "NotifyFrame"
-        NotifyFrame.BackgroundTransparency = 0.15
+        NotifyFrame.BackgroundTransparency = 1
         NotifyFrame.Parent = CoreGui.NotifyGui.NotifyLayout
         NotifyFrame.AnchorPoint = Vector2.new(0, 1)
         NotifyFrame.Position = UDim2.new(0, 0, 1, -(NotifyPosHeigh))
 
-        NotifyFrameReal.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+        NotifyFrameReal.BackgroundColor3 = Color3.fromRGB(232,145,234)
         NotifyFrameReal.BorderColor3 = Color3.fromRGB(0, 0, 0)
         NotifyFrameReal.BorderSizePixel = 0
         NotifyFrameReal.Position = UDim2.new(0, 400, 0, 0)
